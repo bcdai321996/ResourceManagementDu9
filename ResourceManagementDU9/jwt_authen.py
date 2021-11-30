@@ -52,13 +52,13 @@ def vertify_token(token):
     try:
         decode_token = jwt.decode(token, settings.SECRET_KEY, algorithms='HS256')
         userid = decode_token['userid']
-        user_name = decode_token['user_name']
+        user_name = decode_token['username']
         password = decode_token['password']
         ip = decode_token['ip']
         browser = decode_token['browser']
         for object_old in reversed(jwt_token_memory_authenticator):
             if object_old["userid"] == userid and \
-                object_old["user_name"] == user_name \
+                object_old["username"] == user_name \
                 and object_old["password"] == password \
                 and object_old["ip"] == ip and object_old["browser"] == browser:
                 time_old_str = object_old['time']

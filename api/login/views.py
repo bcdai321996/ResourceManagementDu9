@@ -17,13 +17,6 @@ def btn_get_data(request, format=None):
     response = contants.get_response(None)
 
     try:
-        request_data = request.data
-
-        # Validate obj_data_input
-        # if validate.validate_sample(obj_data_input) == False:
-        # response['code'] = 1
-        # return Response(response)
-
         obj_data_output = models.btn_get_data()
 
         code_output = obj_data_output['code']
@@ -42,7 +35,6 @@ def btn_get_data(request, format=None):
 @parser_classes([JSONParser])
 @renderer_classes([JSONRenderer])
 def login_requester(request):
-    print(request.META)
     response = contants.get_response(None)
     try:
         data_input = request.data
@@ -65,5 +57,24 @@ def login_requester(request):
         response['code'] = code_output
     except Exception as e:
         print("login.views -> login_requester -> ex", e)
+
+    return Response(response)
+
+
+@api_view(['POST'])
+@parser_classes([JSONParser])
+@renderer_classes([JSONRenderer])
+def logout_requester(request):
+    print(request.META)
+    response = contants.get_response_logout_requester(None)
+    try:
+        token = request.META['HTTP_AUTHORIZATION']
+        check_token = jwt_authen.remove_token(token)
+        if check_token:
+            response = contants.get_response_logout_requester(0)
+        else:
+            response = contants.get_response_logout_requester(777)
+    except Exception as e:
+        print("authen.views -> logout -> ex", e)
 
     return Response(response)

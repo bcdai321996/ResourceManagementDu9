@@ -1,7 +1,6 @@
 from ultils import mysql_connection
 from ultils import response_json
 
-
 def btn_get_data():
     connection = None
     cursor = None
@@ -62,3 +61,4 @@ def login_requester(obj_login):
             cursor.close()
 
     return response
+

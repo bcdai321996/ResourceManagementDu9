@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'corsheaders',
     'rest_framework',
-    'api'
+    'api',
+    'ResourceManagementDU9.apps.AppGlobalConfig'
 ]
 REST_FRAMEWORK = {
     'DEFAULT_RENDERER_CLASSES': (
@@ -59,6 +60,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'ResourceManagementDU9.middleware.PermissionMiddleware'
 ]
 
 ROOT_URLCONF = 'ResourceManagementDU9.urls'
@@ -80,7 +82,8 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'ResourceManagementDU9.wsgi.application'
-
+API_URL_ACCESS = ['/', '/rest/api/login/']
+API_PERMISSION_ACCESS = ['/rest/api/login/logout']
 
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
