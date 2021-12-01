@@ -4,12 +4,12 @@ from rest_framework.decorators import renderer_classes
 from rest_framework.parsers import JSONParser
 from rest_framework.renderers import JSONRenderer
 from rest_framework.response import Response
-
 from ResourceManagementDU9 import jwt_authen
 from . import contants
 from . import models
 
 
+# View request get all user
 @api_view(['POST'])
 @parser_classes([JSONParser])
 @renderer_classes([JSONRenderer])
@@ -31,6 +31,7 @@ def btn_get_data(request, format=None):
     return Response(response)
 
 
+# View request login
 @api_view(['POST'])
 @parser_classes([JSONParser])
 @renderer_classes([JSONRenderer])

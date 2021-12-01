@@ -1,6 +1,8 @@
 from ultils import mysql_connection
 from ultils import response_json
 
+
+# Get all user
 def btn_get_data():
     connection = None
     cursor = None
@@ -30,6 +32,7 @@ def btn_get_data():
     return response
 
 
+# Execute sql query login check username password
 def login_requester(obj_login):
     connection = None
     cursor = None
@@ -61,4 +64,3 @@ def login_requester(obj_login):
             cursor.close()
 
     return response
-
