@@ -9,6 +9,7 @@ from ResourceManagementDU9 import settings, jwt_authen
 from ultils import global_config
 
 
+# function middleware kiểm tra user sau khi login
 class PermissionMiddleware(MiddlewareMixin):
 
     def process_request(self, request):

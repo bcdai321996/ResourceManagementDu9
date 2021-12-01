@@ -9,6 +9,7 @@ from ultils import global_config
 jwt_token_memory_authenticator = []
 
 
+# Function create token check delay login
 def create_token(userid, username, password, menu_access, ip_request, browser_request):
     time_now_str = datetime.now().strftime("%d-%m-%Y %H:%M:%S")
     payload = {
@@ -47,6 +48,7 @@ def create_token(userid, username, password, menu_access, ip_request, browser_re
     return token
 
 
+# Function kiểm tra token sau đăng nhập
 def vertify_token(token):
     flag_check_token = False
     try:
@@ -58,9 +60,9 @@ def vertify_token(token):
         browser = decode_token['browser']
         for object_old in reversed(jwt_token_memory_authenticator):
             if object_old["userid"] == userid and \
-                object_old["username"] == user_name \
-                and object_old["password"] == password \
-                and object_old["ip"] == ip and object_old["browser"] == browser:
+                    object_old["username"] == user_name \
+                    and object_old["password"] == password \
+                    and object_old["ip"] == ip and object_old["browser"] == browser:
                 time_old_str = object_old['time']
                 time_now_str = datetime.now().strftime('%d-%m-%Y %H:%M:%S')
                 old_time_fr = datetime.strptime(time_old_str, '%d-%m-%Y %H:%M:%S')
@@ -87,6 +89,7 @@ def vertify_token(token):
     return flag_check_token
 
 
+# Function remove list token (IP , Address) login
 def remove_token(token):
     flag_remove_token = False
     try:
